@@ -1,0 +1,8 @@
+{
+  "name": "wai-aria",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/cross-team/wai-aria.git",
+  "author": "Marcello Paiva <marcello.paiva@gmail.com>",
+  "license": "MIT"
+}
