@@ -1,3 +1,3 @@
-import { Role } from './types';
+import { getRole } from './utils/helpers'
 
-export { Role };
+export { getRole }

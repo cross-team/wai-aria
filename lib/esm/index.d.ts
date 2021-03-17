@@ -1,2 +1,2 @@
-import { Role } from './types';
-export { Role };
+import { getRole } from './utils/helpers';
+export { getRole };

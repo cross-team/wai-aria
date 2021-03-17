@@ -1,26 +1,21 @@
-import { AbstractRole } from '../../types';
+import AbstractRole from '../abstractRole'
 
-const widgetRole: AbstractRole = {
-  name: 'command',
-  description:
-    'A form of widget that performs an action but does not receive input data.',
-  category: 'abstract',
-  abstract: true,
-  superclassRole: baseRole;
-  subclassRoles: [buttonRole, linkRole, menuItemRole];
-  requiredAttributes: [],
-  supportedAttributes: [],
-  inheritedAttributes: [
-    'aria-atomic',
-    'aria-busy',
-    'aria-controls',
-    'aria-current',
+const widgetRole = new AbstractRole({
+  name: 'widget',
+  description: 'An interactive component of a graphical user interface (GUI).',
+  superclassRoles: ['roletype'],
+  subclassRoles: [
+    'command',
+    'composite',
+    'gridcell',
+    'input',
+    'progressbar',
+    'row',
+    'scrollbar',
+    'separator',
+    'tab',
   ],
-  prohibitedAttributes: [],
-  requiredOwnedElements: [],
-  requiredContextRole: null,
-  accessibleName: 'author',
-  implicitValues: [],
-};
+  accessibleName: [],
+})
 
-export default commandRole;
+export default widgetRole

@@ -1,40 +1,67 @@
-type AbstractRole = Role & { category: 'abstract'; abstract: true };
-type WidgetRole = Role & { category: 'widget' };
-type DocumentStructureRole = Role & { category: 'document structure' };
-type LandmarkRole = Role & { category: 'landmark' };
-type LiveRegionRole = Role & { category: 'live region' };
-type WindowRole = Role & { category: 'window' };
+import AbstractRole from './roles/abstractRole'
+import DocumentStructureRole from './roles/documentRole'
+import LandmarkRole from './roles/landmarkRole'
+import LiveRegionRole from './roles/liveRole'
+import WidgetRole from './roles/widgetRole'
+import WindowRole from './roles/windowRole'
 
-type Role = {
-  name: string;
-  description: string;
-  abstract: boolean;
-  superclassRole: Role | null;
-  subclassRoles: Array<Role>;
-  requiredAttributes: Array<Attribute>;
-  supportedAttributes: Array<Attribute>;
-  inheritedAttributes: Array<Attribute>;
-  prohibitedAttributes: Array<Attribute>;
-  requiredOwnedElements: Array<Role>;
-  requiredContextRole: Role | null;
-  accessibleName: 'author' | 'content' | 'prohibited' | null;
-  presentationalChildren?: boolean;
-  implicitValues: Array<AttributeValue>;
-};
+export type Role =
+  | AbstractRole
+  | DocumentStructureRole
+  | LandmarkRole
+  | LiveRegionRole
+  | WidgetRole
+  | WindowRole
 
-type AttributeValue = {
-  prop: Attribute;
-  value: string;
-};
+export type RoleArguments = {
+  name: RoleName
+  description: string
+  accessibleName: Array<AccessibleNameFrom> | 'prohibited'
+  superclassRoles: Array<RoleName>
+  subclassRoles?: Array<RoleName>
+  requiredAttributes?: Array<Attribute>
+  supportedAttributes?: Array<Attribute>
+  prohibitedAttributes?: Array<Attribute>
+  requiredOwnedElements?: Array<RoleName | Array<RoleName>>
+  requiredContextRoles?: Array<RoleName>
+  nameRequired?: boolean
+  presentationalChildren?: boolean
+  deprecated?: boolean
+  implicitValues?: Array<AttributeValue>
+  relatedConcepts?: Array<Concept>
+  baseConcepts?: Array<Concept>
+}
 
-type Attribute =
+export type Concept =
+  | {
+      subject: string
+      specification: 'HTML' | undefined
+    }
+  | RoleName
+
+export type RoleCategory =
+  | 'abstract'
+  | 'widget'
+  | 'document structure'
+  | 'landmark'
+  | 'live region'
+  | 'window'
+
+export type AccessibleNameFrom = 'author' | 'contents'
+
+export type AttributeValue = {
+  attribute: Attribute
+  value: string
+}
+
+export type Attribute =
   | WidgetAttribute
   | LiveRegionAttribute
   | DragDropAttribute
   | RelationshipAttribute
-  | MiscAttribute;
+  | MiscAttribute
 
-type WidgetAttribute =
+export type WidgetAttribute =
   | 'aria-autocomplete'
   | 'aria-checked'
   | 'aria-disabled'
@@ -58,17 +85,17 @@ type WidgetAttribute =
   | 'aria-valuemax'
   | 'aria-valuemin'
   | 'aria-valuenow'
-  | 'aria-valuetext';
+  | 'aria-valuetext'
 
-type LiveRegionAttribute =
+export type LiveRegionAttribute =
   | 'aria-atomic'
   | 'aria-busy'
   | 'aria-live'
-  | 'aria-relevant';
+  | 'aria-relevant'
 
-type DragDropAttribute = 'aria-dropeffect' | 'aria-grabbed';
+export type DragDropAttribute = 'aria-dropeffect' | 'aria-grabbed'
 
-type RelationshipAttribute =
+export type RelationshipAttribute =
   | 'aria-activedescendant'
   | 'aria-colcount'
   | 'aria-colindex'
@@ -84,25 +111,105 @@ type RelationshipAttribute =
   | 'aria-rowcount'
   | 'aria-rowindex'
   | 'aria-rowspan'
-  | 'aria-setsize';
+  | 'aria-setsize'
 
-type MiscAttribute =
+export type MiscAttribute =
   | 'aria-current'
   | 'aria-keyshortcuts'
-  | 'aria-roledescription';
+  | 'aria-roledescription'
 
-export {
-  AbstractRole,
-  WidgetRole,
-  DocumentStructureRole,
-  LandmarkRole,
-  LiveRegionRole,
-  WindowRole,
-  Role,
-  Attribute,
-  WidgetAttribute,
-  LiveRegionAttribute,
-  DragDropAttribute,
-  RelationshipAttribute,
-  MiscAttribute,
-};
+export type RoleName =
+  | 'alert'
+  | 'alertdialog'
+  | 'application'
+  | 'article'
+  | 'banner'
+  | 'blockquote'
+  | 'button'
+  | 'caption'
+  | 'cell'
+  | 'checkbox'
+  | 'code'
+  | 'columnheader'
+  | 'combobox'
+  | 'command'
+  | 'complementary'
+  | 'composite'
+  | 'contentinfo'
+  | 'definition'
+  | 'deletion'
+  | 'dialog'
+  | 'directory'
+  | 'document'
+  | 'emphasis'
+  | 'feed'
+  | 'figure'
+  | 'form'
+  | 'generic'
+  | 'grid'
+  | 'gridcell'
+  | 'group'
+  | 'heading'
+  | 'img'
+  | 'input'
+  | 'insertion'
+  | 'landmark'
+  | 'link'
+  | 'list'
+  | 'listbox'
+  | 'listitem'
+  | 'log'
+  | 'main'
+  | 'marquee'
+  | 'math'
+  | 'meter'
+  | 'menu'
+  | 'menubar'
+  | 'menuitem'
+  | 'menuitemcheckbox'
+  | 'menuitemradio'
+  | 'navigation'
+  | 'none'
+  | 'note'
+  | 'option'
+  | 'paragraph'
+  | 'presentation'
+  | 'progressbar'
+  | 'radio'
+  | 'radiogroup'
+  | 'range'
+  | 'region'
+  | 'roletype'
+  | 'row'
+  | 'rowgroup'
+  | 'rowheader'
+  | 'scrollbar'
+  | 'search'
+  | 'searchbox'
+  | 'section'
+  | 'sectionhead'
+  | 'select'
+  | 'separator'
+  | 'slider'
+  | 'spinbutton'
+  | 'status'
+  | 'strong'
+  | 'structure'
+  | 'subscript'
+  | 'superscript'
+  | 'switch'
+  | 'tab'
+  | 'table'
+  | 'tablist'
+  | 'tabpanel'
+  | 'term'
+  | 'textbox'
+  | 'time'
+  | 'timer'
+  | 'toolbar'
+  | 'tooltip'
+  | 'tree'
+  | 'treegrid'
+  | 'treeitem'
+  | 'widget'
+  | 'window'
