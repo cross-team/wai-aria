@@ -17,7 +17,7 @@ export type RoleArguments = {
   name: RoleName
   description: string
   accessibleName: Array<AccessibleNameFrom> | 'prohibited'
-  superclassRoles: Array<RoleName>
+  superclassRoles: Array<Role>
   subclassRoles?: Array<RoleName>
   requiredAttributes?: Array<Attribute>
   supportedAttributes?: Array<Attribute>

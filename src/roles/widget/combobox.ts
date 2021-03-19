@@ -1,4 +1,3 @@
-import articleRole from '../document/article'
 import WidgetRole from '../widgetRole'
 
 const comboboxRole = new WidgetRole({

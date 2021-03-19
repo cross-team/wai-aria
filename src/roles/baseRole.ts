@@ -7,7 +7,6 @@ import {
   AccessibleNameFrom,
   Concept,
 } from '../types'
-import { getRole } from '../utils/helpers'
 
 export default class BaseRole {
   readonly name: RoleName
@@ -15,7 +14,7 @@ export default class BaseRole {
   readonly category: RoleCategory
   readonly abstract: boolean
   readonly accessibleName: Array<AccessibleNameFrom> | 'prohibited'
-  readonly superclassRoles: Array<RoleName>
+  readonly superclassRoles: Array<Role>
   readonly subclassRoles?: Array<RoleName>
   readonly inheritedAttributes: Array<Attribute>
   readonly requiredAttributes?: Array<Attribute>
@@ -34,7 +33,7 @@ export default class BaseRole {
     name: RoleName,
     description: string,
     category: RoleCategory,
-    superclassRoles: Array<RoleName>,
+    superclassRoles: Array<Role>,
     accessibleName: Array<AccessibleNameFrom> | 'prohibited',
     subclassRoles?: Array<RoleName>,
     requiredAttributes?: Array<Attribute>,
@@ -93,26 +92,24 @@ export default class BaseRole {
   }
 }
 
-// TO DO: getInheritedAttributes function definition
-function getInheritedAttributes(
-  superclasses: Array<RoleName>
-): Array<Attribute> {
+function getInheritedAttributes(superclasses: Array<Role>): Array<Attribute> {
   if (superclasses === []) {
     return []
   }
   let inherited: Array<Attribute> = []
   superclasses.forEach((superclass) => {
-    let superRole = getRole(superclass)
-    console.log('THIS IS SUPER ROLE', superRole)
-    if (!Array.isArray(superRole)) {
-      let newAttributes = superRole.inheritedAttributes
-      newAttributes.forEach((attribute) => {
+    if (superclass.supportedAttributes) {
+      superclass.supportedAttributes.forEach((attribute) => {
         if (inherited.indexOf(attribute) === -1) {
           inherited.push(attribute)
         }
       })
     }
+    superclass.inheritedAttributes.forEach((attribute) => {
+      if (inherited.indexOf(attribute) === -1) {
+        inherited.push(attribute)
+      }
+    })
   })
-
   return inherited
 }
