@@ -1,3 +1,4 @@
+import WidgetRole from '../widgetRole'
 import buttonRole from './button'
 import checkboxRole from './checkbox'
 import comboboxRole from './combobox'
@@ -28,7 +29,7 @@ import treeRole from './tree'
 import treegridRole from './treegrid'
 import treeitemRole from './treeitem'
 
-const WidgetRoles = [
+const WidgetRoles: Array<WidgetRole> = [
   buttonRole,
   checkboxRole,
   comboboxRole,

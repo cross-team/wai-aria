@@ -1,3 +1,4 @@
+import DocumentStructureRole from '../documentRole'
 import applicationRole from './application'
 import articleRole from './article'
 import blockquoteRole from './blockquote'
@@ -37,7 +38,7 @@ import timeRole from './time'
 import toolbarRole from './toolbar'
 import tooltipRole from './tooltip'
 
-const DocumentStructureRoles = [
+const DocumentStructureRoles: Array<DocumentStructureRole> = [
   applicationRole,
   articleRole,
   blockquoteRole,

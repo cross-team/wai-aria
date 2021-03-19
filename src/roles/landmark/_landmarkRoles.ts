@@ -1,3 +1,4 @@
+import LandmarkRole from '../landmarkRole'
 import bannerRole from './banner'
 import complementaryRole from './complementary'
 import contentinfoRole from './contentinfo'
@@ -7,7 +8,7 @@ import navigationRole from './navigation'
 import regionRole from './region'
 import searchRole from './search'
 
-const LandmarkRoles = [
+const LandmarkRoles: Array<LandmarkRole> = [
   bannerRole,
   complementaryRole,
   contentinfoRole,
