@@ -1,11 +1,13 @@
+import sectionRole from '../abstract/section'
 import LiveRegionRole from '../liveRole'
+import alertdialogRole from '../window/alertdialog'
 
-const alertRole = new LiveRegionRole({
+const alertRole: LiveRegionRole = new LiveRegionRole({
   name: 'alert',
   description:
     'A type of live region with important, and usually time-sensitive, information.',
-  superclassRoles: ['section'],
-  subclassRoles: ['alertdialog'],
+  superclassRoles: [sectionRole],
+  subclassRoles: [alertdialogRole],
   accessibleName: ['author'],
   implicitValues: [
     {
@@ -16,6 +18,12 @@ const alertRole = new LiveRegionRole({
       attribute: 'aria-atomic',
       value: 'true',
     },
+  ],
+  deprecatedAttributes: [
+    'aria-disabled',
+    'aria-errormessage',
+    'aria-haspopup',
+    'aria-invalid',
   ],
 })
 
