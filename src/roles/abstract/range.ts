@@ -1,10 +1,22 @@
 import AbstractRole from '../abstractRole'
+import meterRole from '../document/meter'
+import progressbarRole from '../widget/progressbar'
+import scrollbarRole from '../widget/scrollbar'
+import sliderRole from '../widget/slider'
+import spinbuttonRole from '../widget/spinbutton'
+import structureRole from './structure'
 
-const rangeRole = new AbstractRole({
+const rangeRole: AbstractRole = new AbstractRole({
   name: 'range',
   description: 'An element representing a range of values.',
-  superclassRoles: ['structure'],
-  subclassRoles: ['meter', 'progressbar', 'scrollbar', 'slider', 'spinbutton'],
+  superclassRoles: [structureRole],
+  subclassRoles: [
+    meterRole,
+    progressbarRole,
+    scrollbarRole,
+    sliderRole,
+    spinbuttonRole,
+  ],
   supportedAttributes: [
     'aria-valuemax',
     'aria-valuemin',
@@ -12,6 +24,12 @@ const rangeRole = new AbstractRole({
     'aria-valuetext',
   ],
   accessibleName: ['author'],
+  deprecatedAttributes: [
+    'aria-disabled',
+    'aria-errormessage',
+    'aria-haspopup',
+    'aria-invalid',
+  ],
 })
 
 export default rangeRole

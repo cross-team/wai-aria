@@ -18,7 +18,7 @@ export type RoleArguments = {
   description: string
   accessibleName: Array<AccessibleNameFrom> | 'prohibited'
   superclassRoles: Array<Role>
-  subclassRoles?: Array<RoleName>
+  subclassRoles?: Array<Role>
   requiredAttributes?: Array<Attribute>
   supportedAttributes?: Array<Attribute>
   prohibitedAttributes?: Array<Attribute>
@@ -26,10 +26,11 @@ export type RoleArguments = {
   requiredContextRoles?: Array<RoleName>
   nameRequired?: boolean
   presentationalChildren?: boolean
-  deprecated?: boolean
   implicitValues?: Array<AttributeValue>
   relatedConcepts?: Array<Concept>
   baseConcepts?: Array<Concept>
+  deprecatedAttributes?: Array<Attribute>
+  deprecated?: boolean | Role
 }
 
 export type Concept =

@@ -15,7 +15,7 @@ export default class BaseRole {
   readonly abstract: boolean
   readonly accessibleName: Array<AccessibleNameFrom> | 'prohibited'
   readonly superclassRoles: Array<Role>
-  readonly subclassRoles?: Array<RoleName>
+  readonly subclassRoles?: Array<Role>
   readonly inheritedAttributes: Array<Attribute>
   readonly requiredAttributes?: Array<Attribute>
   readonly supportedAttributes?: Array<Attribute>
@@ -24,10 +24,11 @@ export default class BaseRole {
   readonly requiredContextRoles?: Array<RoleName>
   readonly nameRequired?: boolean
   readonly presentationalChildren?: boolean
-  readonly deprecated?: boolean
   readonly implicitValues?: Array<AttributeValue>
   readonly relatedConcepts?: Array<Concept>
   readonly baseConcepts?: Array<Concept>
+  readonly deprecatedAttributes?: Array<Attribute>
+  readonly deprecated?: boolean | Role
 
   constructor(
     name: RoleName,
@@ -35,7 +36,7 @@ export default class BaseRole {
     category: RoleCategory,
     superclassRoles: Array<Role>,
     accessibleName: Array<AccessibleNameFrom> | 'prohibited',
-    subclassRoles?: Array<RoleName>,
+    subclassRoles?: Array<Role>,
     requiredAttributes?: Array<Attribute>,
     supportedAttributes?: Array<Attribute>,
     prohibitedAttributes?: Array<Attribute>,
@@ -43,10 +44,11 @@ export default class BaseRole {
     requiredContextRoles?: Array<RoleName>,
     nameRequired?: boolean,
     presentationalChildren?: boolean,
-    deprecated?: boolean,
     implicitValues?: Array<AttributeValue>,
     relatedConcepts?: Array<Concept>,
-    baseConcepts?: Array<Concept>
+    baseConcepts?: Array<Concept>,
+    deprecatedAttributes?: Array<Attribute>,
+    deprecated?: boolean | Role
   ) {
     this.name = name
     this.description = description
@@ -86,6 +88,7 @@ export default class BaseRole {
       this.deprecated = false
     }
 
+    this.deprecatedAttributes = deprecatedAttributes
     this.implicitValues = implicitValues
     this.relatedConcepts = relatedConcepts
     this.baseConcepts = baseConcepts

@@ -17,10 +17,11 @@ export default class DocumentStructureRole extends BaseRole {
       role.requiredContextRoles,
       role.nameRequired,
       role.presentationalChildren,
-      role.deprecated,
       role.implicitValues,
       role.relatedConcepts,
-      role.baseConcepts
+      role.baseConcepts,
+      role.deprecatedAttributes,
+      role.deprecated
     )
   }
 }

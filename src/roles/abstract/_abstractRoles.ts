@@ -1,3 +1,4 @@
+import AbstractRole from '../abstractRole'
 import commandRole from './command'
 import compositeRole from './composite'
 import inputRole from './input'
@@ -11,7 +12,7 @@ import structureRole from './structure'
 import widgetRole from './widget'
 import windowRole from './window'
 
-const AbstractRoles = [
+const AbstractRoles: Array<AbstractRole> = [
   commandRole,
   compositeRole,
   inputRole,

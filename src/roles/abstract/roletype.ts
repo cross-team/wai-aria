@@ -1,10 +1,13 @@
 import AbstractRole from '../abstractRole'
+import structureRole from './structure'
+import widgetRole from './widget'
+import windowRole from './window'
 
-const roletypeRole = new AbstractRole({
+const roletypeRole: AbstractRole = new AbstractRole({
   name: 'roletype',
   description: 'The base role from which all other roles inherit.',
   superclassRoles: [],
-  subclassRoles: ['structure', 'widget', 'window'],
+  subclassRoles: [structureRole, widgetRole, windowRole],
   supportedAttributes: [
     'aria-atomic',
     'aria-busy',
@@ -29,6 +32,12 @@ const roletypeRole = new AbstractRole({
     'aria-roledescription',
   ],
   accessibleName: [],
+  deprecatedAttributes: [
+    'aria-disabled',
+    'aria-errormessage',
+    'aria-haspopup',
+    'aria-invalid',
+  ],
 })
 
 export default roletypeRole
